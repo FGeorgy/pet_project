@@ -3,6 +3,8 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { LangSwitcher } from 'widgets/LangSwitcher/LangSwitcher';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'shared/config/routerConfig/routerConfig';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -31,9 +33,31 @@ export const Sidebar = ({ className }: SidebarProps) => {
       >
         {collapsed ? '>' : '<'}
       </Button>
+      <div className={cls.items}>
+        <AppLink
+          theme={AppLinkTheme.SECONDARY}
+          className={cls.link}
+          to={RoutePath.main}
+          // eslint-disable-next-line i18next/no-literal-string
+        >
+          Главная
+        </AppLink>
+        <AppLink
+          theme={AppLinkTheme.SECONDARY}
+          className={cls.link}
+          // eslint-disable-next-line i18next/no-literal-string
+          to={RoutePath.about}
+          // eslint-disable-next-line i18next/no-literal-string
+        >
+          О сайте
+        </AppLink>
+      </div>
       <div className={cls.switchers}>
         <ThemeSwitcher />
-        <LangSwitcher className={cls.lang} />
+        <LangSwitcher
+          className={cls.lang}
+          short={collapsed}
+        />
       </div>
     </div>
   );
